@@ -49,4 +49,11 @@ width: 50%;
   font-family: fantasy;
 }
 
+.imageupload_caption{
+  margin-top: 10px;
+  border-width: 2px;
+  border-color: rgb(135, 111, 75);
+  height: 30px;
+}
+
 
