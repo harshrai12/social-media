@@ -9,6 +9,9 @@
 
 .App-logo{
   width:25%;
+  display: block;
+
+  margin-left: 35%;
 }
 .app__header{
   background-color: white;
@@ -16,6 +19,10 @@
   border-bottom: 1px solid lightgray; 
   object-fit: contain;
   
+}
+.hey{
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .makeStyles-paper-1 {
@@ -29,5 +36,12 @@ padding-left: 25%;
 width: 50%;
 }
 
+.alltext{
+  color: rgb(0, 0, 0);
+}
+
+.imageupload{
+  align-items: center;
+}
 
 

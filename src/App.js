@@ -42,6 +42,18 @@ function App() {
 
   const [modalStyle] = React.useState(getModalStyle);
 
+
+
+  function timeFunction() {
+    setTimeout(refreshPage(), 5000);
+}
+
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  
+
   useEffect(() => {
     db.collection("posts").onSnapshot((snapshot) => {
       setPosts(
@@ -68,6 +80,12 @@ function App() {
     };
   }, [user, username]);
 
+  const clearInput = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+  };
+
   const signUp = (event) => {
     event.preventDefault();
     auth
@@ -76,9 +94,14 @@ function App() {
         authUser.user.updateProfile({
           displayName: username,
         });
+        window.location.reload();
       })
       .catch((error) => alert(error.message));
     setOpen(false);
+    clearInput();
+    
+  
+   
   };
 
   const handleClose = () => {};
@@ -88,6 +111,8 @@ function App() {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
       setOpenSignIn(false)
+      clearInput();
+      
   };
 
   return (
@@ -95,8 +120,10 @@ function App() {
     {user?.displayName?(
       <ImageUpload username={user.displayName}/>
     ):(
-       <h4>login to upload</h4>
+       <h4 className="alltext"> Please Login to upload</h4>
     )}
+
+    
     
       <Modal className="modal" open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
@@ -152,6 +179,9 @@ function App() {
       </Modal>
       <div className="app__header">
         <img src={logo} className="App-logo" alt="logo" />
+        {user && (
+          <div className="hey"><p className="alltext">Hey {user.displayName} enjoy Social Space</p></div>
+        )}
       </div>
       {user ? (
         <Button onClick={() => auth.signOut()}>logout</Button>
@@ -165,9 +195,11 @@ function App() {
       {posts.map(({ post, id }) => (
         <Post
           key={id}
+          postId={id}
           username={post.username}
           caption={post.caption}
           imageUrl={post.imageUrl}
+          user={user}
         />
       ))}
     </div>
