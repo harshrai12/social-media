@@ -58,7 +58,6 @@ function ImageUpload({ username }) {
         className="imageupload_caption"
         type="text"
         placeholder="Enter a caption"
-        placeholder="Caption"
         value={caption}
         onChange={(event) => setCaption(event.target.value)}
       ></input>
